@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 const parent = React.createElement("div", { id: "parent" }, [
   React.createElement("div", { id: "child 1" }, [
     React.createElement("h1", {}, "Hello AK"),
@@ -9,11 +12,6 @@ const parent = React.createElement("div", { id: "parent" }, [
   ]),
 ]);
 
-// const heading = React.createElement(
-//   "h1",
-//   { id: "heading", xyz: "abc" },
-//   "Namaste React"
-// );
 console.log(parent);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(parent);
