@@ -1,17 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const parent = React.createElement("div", { id: "parent" }, [
-  React.createElement("div", { id: "child 1" }, [
-    React.createElement("h1", {}, "Hello AK"),
-    React.createElement("h2", {}, "Wassup"),
-  ]),
-  React.createElement("div", { id: "child 2" }, [
-    React.createElement("h1", {}, "Hello AK"),
-    React.createElement("h2", {}, "Wassup"),
-  ]),
-]);
+const title = <h1 id="head">Wassup Abhishek JSX</h1>;
 
-console.log(parent);
+// Component Compositions
+const HeadingComp = () => (
+  <div id="container">
+    {title}
+    <h1 id="heading">Hello Abhishek functional component 🚀</h1>
+  </div>
+);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+root.render(<HeadingComp />);
