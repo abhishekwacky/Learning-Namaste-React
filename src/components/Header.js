@@ -4,12 +4,10 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
-  console.log("Header Rendered");
+
   //   let btnName = "Login";
 
-  useEffect(() => {
-    console.log("UseEffect Called");
-  }, [btnName]);
+  useEffect(() => {}, [btnName]);
   return (
     <div className="header">
       <div className="logo-container">
@@ -31,7 +29,6 @@ const Header = () => {
             className="login-btn"
             onClick={() => {
               btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
-              console.log(btnName);
             }}
           >
             {btnName}
