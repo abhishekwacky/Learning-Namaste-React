@@ -1,4 +1,4 @@
-import ResturantCard from "./ResturantCard";
+import ResturantCard,{isRestaturantOpen} from "./ResturantCard";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -10,11 +10,13 @@ const Body = () => {
   const [filteredResturant, setFilteredResturant] = useState();
   const [searchText, setSearchText] = useState("");
 
+  const OpenRestaurant = isRestaturantOpen(ResturantCard);
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log("Rendereded Callback");
+  console.log("Rendereded Callback",listOfResturant);
   const fetchData = async () => {
     const data = await fetch(
       "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D23.022505%26lng%3D72.5713621%26page_type%3DDESKTOP_WEB_LISTING"
@@ -84,7 +86,7 @@ const Body = () => {
             key={resturant.info.id}
             to={"/restaurants/" + resturant.info.id}
           >
-            <ResturantCard resData={resturant} />
+            {resturant.info.isOpen ? <OpenRestaurant resData={resturant}/> : <ResturantCard resData={resturant} />}
           </Link>
         ))}
       </div>
