@@ -1,4 +1,4 @@
-import ResturantCard,{isRestaturantOpen} from "./ResturantCard";
+import RestaurantCard,{isRestaturantOpen} from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
@@ -10,7 +10,7 @@ const Body = () => {
   const [filteredResturant, setFilteredResturant] = useState();
   const [searchText, setSearchText] = useState("");
 
-  const OpenRestaurant = isRestaturantOpen(ResturantCard);
+  const OpenRestaurant = isRestaturantOpen(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -81,12 +81,12 @@ const Body = () => {
         </div>
       </div>
       <div className="flex flex-wrap">
-        {filteredResturant.map((resturant) => (
+        {filteredResturant.map((restaurant) => (
           <Link
-            key={resturant.info.id}
-            to={"/restaurants/" + resturant.info.id}
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}
           >
-            {resturant.info.isOpen ? <OpenRestaurant resData={resturant}/> : <ResturantCard resData={resturant} />}
+            {restaurant.info.isOpen ? <OpenRestaurant resData={restaurant}/> : <RestaurantCard resData={restaurant} />}
           </Link>
         ))}
       </div>

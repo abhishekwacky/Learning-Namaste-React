@@ -1,6 +1,6 @@
 import { CDN_URL } from "../utils/constant";
 
-const ResturantCard = (props) => {
+const RestaurantCard = (props) => {
   const { resData } = props;
 
   const {
@@ -28,15 +28,15 @@ const ResturantCard = (props) => {
   );
 };
 
-export const isRestaturantOpen =(ResturantCard)=>{
+export const isRestaturantOpen =(RestaurantCard)=>{
 
   return (props) => {
       return(
         <div>
           <label className="absolute bg-black text-white m-2 p-2 rounded-lg">Open</label>
-          <ResturantCard {...props}/>
+          <RestaurantCard {...props}/>
         </div>
       )
   }
 }
-export default ResturantCard;
+export default RestaurantCard;
