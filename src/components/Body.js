@@ -1,9 +1,10 @@
-import RestaurantCard,{isRestaturantOpen} from "./RestaurantCard";
+import RestaurantCard, { isRestaturantOpen } from "./RestaurantCard";
 import resList from "../utils/mockData";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfResturant, setListOfResturant] = useState([]);
@@ -12,14 +13,15 @@ const Body = () => {
 
   const OpenRestaurant = isRestaturantOpen(RestaurantCard);
 
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log("Rendereded Callback",listOfResturant);
   const fetchData = async () => {
     const data = await fetch(
-      "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D23.022505%26lng%3D72.5713621%26page_type%3DDESKTOP_WEB_LISTING"
+      "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     console.log(json);
@@ -40,7 +42,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter flex">
+      <div className="filter flex ">
         <div className="search p-4 m-4">
           <input
             type="text"
@@ -79,6 +81,14 @@ const Body = () => {
             Top Rated Resturant
           </button>
         </div>
+        <div className="search p-4 m-4 flex items-center">
+          <label>UserName : </label>
+          <input
+            className="border border-black p-1"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          ></input>
+        </div>
       </div>
       <div className="flex flex-wrap">
         {filteredResturant.map((restaurant) => (
@@ -86,7 +96,11 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
-            {restaurant.info.isOpen ? <OpenRestaurant resData={restaurant}/> : <RestaurantCard resData={restaurant} />}
+            {restaurant.info.isOpen ? (
+              <OpenRestaurant resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
