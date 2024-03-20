@@ -19,3 +19,12 @@
 - HTTPs
 - Tree Shaking
 - Different Dev and Prod bundles
+
+
+# Redux Toolkit
+ - Install @reduxjs/toolkit and react-redux
+ - Build our store 
+ - Connect our store to the app
+ - We will create a cart Slice
+ - dispatch(action)
+ - Selector
